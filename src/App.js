@@ -5,9 +5,9 @@ import Characters  from './componentes/Character';
 import Buscador from './componentes/Buscador';
 import Pagination from './componentes/Pagination';
 
-useEffect(() => {
-  this.datosBusqueda();
-}, [])
+// useEffect(() => {
+//   this.datosBusqueda();
+// }, [])
 
 class App extends Component {
 
@@ -42,8 +42,9 @@ class App extends Component {
     //console.log(url);
      
     fetch(url)
-    .then(respuesta => respuesta.json())
-    .then(resultado => this.setState({imagenes : resultado.hits}))
+      .then(response => response.json())
+      .then(data => setCharacters(data.hits))
+      .catch(error => console.log(error))
   }
 
 
@@ -83,9 +84,9 @@ class App extends Component {
       <>
         <Navbar brand="React pixebay"></Navbar>
         <div className="container">
-          <Buscador datosBusqueda={datosBusqueda}></Buscador>
+          <Buscador datosBusqueda={this.datosBusqueda}></Buscador>
           <Characters characters={characters}></Characters>
-          <Pagination paginaSiguiente={paginaSiguiente} paginaAnterior={paginaAnterior}></Pagination>
+          <Pagination paginaSiguiente={this.paginaSiguiente} paginaAnterior={this.paginaAnterior}></Pagination>
         </div>
       </>
 
