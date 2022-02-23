@@ -9,6 +9,8 @@ import Pagination from './componentes/Pagination';
 //   this.datosBusqueda();
 // }, [])
 
+const [characters, setCharacters] = useState([]);
+
 class App extends Component {
 
   state = {
@@ -39,7 +41,6 @@ class App extends Component {
     const termino = this.state.termino;
     const pagina = this.state.pagina;
     const url = `https://pixabay.com/api/?key=25838828-7a5ac27d64c7e99873e9e5729&q=${termino}&per_page=30&page=${pagina}`;
-    //console.log(url);
      
     fetch(url)
       .then(response => response.json())
@@ -58,34 +59,16 @@ class App extends Component {
   }
 
 
-
-  // function consultaApi() {
-  //   const urlB = 'https://pixabay.com/api/?key=25839045-809b64a8b48695c9127b61dde&q='+state+'&per_page=12&page='+pag;
-  //   console.log(urlB)
-  //   fetchCharacters(urlB);
-
-  // }
-
-  // const [characters, setCharacters] = useState([]);
-
-  // const api = "https://pixabay.com/api/?key=25839045-809b64a8b48695c9127b61dde&q=&per_page=12"
-
-  // const fetchCharacters = (url) => {
-  //   fetch(url)
-  //     .then(response => response.json())
-  //     .then(data => setCharacters(data.hits))
-  //     .catch(error => console.log(error))
-  // }
-
-
   render() {
 
     return (
+      this.consultarApi(),
+
       <>
         <Navbar brand="React pixebay"></Navbar>
         <div className="container">
           <Buscador datosBusqueda={this.datosBusqueda}></Buscador>
-          <Characters characters={characters}></Characters>
+          <Characters characters={this.characters}></Characters>
           <Pagination paginaSiguiente={this.paginaSiguiente} paginaAnterior={this.paginaAnterior}></Pagination>
         </div>
       </>
