@@ -7,49 +7,44 @@ import Pagination from './componentes/Pagination';
 
 function App() {
 
-  var state = " ";
-  var pag = 1;
+  // Hooks
+  const [characters, setCharacters] = useState([]);
+  // Api
+  const api = "https://pixabay.com/api/?key=25839045-809b64a8b48695c9127b61dde&q="
+
+
+  // Objetos con los atributos necesarios para la busqueda
+  var dataBusqueda = {
+    termino: "",
+    pag: 0,
+  };
 
   function paginaAnterior() {
-    let pagina = pag;
-
+    let pagina = dataBusqueda.pag;
     if(pagina === 1 ) return null;
-
     pagina -= 1;
-
-    pag = pagina;
+    dataBusqueda.pag = pagina;
     consultaApi();
   }
 
   function paginaSiguiente() {
-    let pagina = pag;
-    console.log(pagina);
-
-
-    pagina = pagina + 1;
-
-    pag = pagina;
-
-    console.log(pag);
+    let pagina = dataBusqueda.pag;
+    pagina += 1;
+    dataBusqueda.pag = pagina;
     consultaApi();
   }
   
   function datosBusqueda(termino) {
-    state = termino;
-    console.log(state);
+    dataBusqueda.termino = termino;
     consultaApi();
   }
 
   function consultaApi() {
-    const urlB = 'https://pixabay.com/api/?key=25839045-809b64a8b48695c9127b61dde&q='+state+'&per_page=12&page='+pag;
+    api = api+dataBusqueda.termino+'&per_page=12&page='+dataBusqueda.pag;
     console.log(urlB)
     fetchCharacters(urlB);
 
   }
-
-  const [characters, setCharacters] = useState([]);
-
-  const api = "https://pixabay.com/api/?key=25839045-809b64a8b48695c9127b61dde&q=&per_page=12"
 
   const fetchCharacters = (url) => {
     fetch(url)
