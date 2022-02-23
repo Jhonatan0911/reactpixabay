@@ -41,9 +41,8 @@ function App() {
 
   function consultaApi() {
     api = api+dataBusqueda.termino+'&per_page=12&page='+dataBusqueda.pag;
-    console.log(urlB)
-    fetchCharacters(urlB);
-
+    console.log(api)
+    fetchCharacters(api);
   }
 
   const fetchCharacters = (url) => {
