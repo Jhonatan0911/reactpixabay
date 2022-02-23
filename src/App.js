@@ -8,9 +8,9 @@ import Pagination from './componentes/Pagination';
 function App() {
 
   // Hooks
-  const [characters, setCharacters] = useState([]);
+  var [characters, setCharacters] = useState([]);
   // Api
-  const api = "https://pixabay.com/api/?key=25839045-809b64a8b48695c9127b61dde&q="
+  var api = "https://pixabay.com/api/?key=25839045-809b64a8b48695c9127b61dde&q="
 
 
   // Objetos con los atributos necesarios para la busqueda
