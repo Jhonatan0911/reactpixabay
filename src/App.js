@@ -16,7 +16,7 @@ function App() {
   // Objetos con los atributos necesarios para la busqueda
   var dataBusqueda = {
     termino: "",
-    pag: 0,
+    pag: 1,
   };
 
   function paginaAnterior() {
@@ -40,9 +40,9 @@ function App() {
   }
 
   function consultaApi() {
-    api = api+dataBusqueda.termino+'&per_page=12&page='+dataBusqueda.pag;
-    console.log(api)
-    fetchCharacters(api);
+    let ap = api+dataBusqueda.termino+'&per_page=12&page='+dataBusqueda.pag;
+    console.log(ap)
+    fetchCharacters(ap);
   }
 
   const fetchCharacters = (url) => {
